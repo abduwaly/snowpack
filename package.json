@@ -2,14 +2,15 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "build": "lerna run build",
+    "build-snowpack": "cd packages/snowpack && yarn build",
     "publish": "lerna publish",
     "format": "prettier --write \"packages/*/src/**/*.ts\"",
-    "setupTest": "yarn build && yarn --force --ignore-engines && lerna run testbuild",
-    "test": "npm run setupTest && jest --test-timeout=15000"
+    "setupTest": "yarn build-snowpack && yarn --force --ignore-engines && lerna run testbuild",
+    "test": "yarn setupTest && jest --test-timeout=15000"
   },
   "workspaces": [
     "packages/*",
+    "packages/@snowpack/*",
     "test/build/*",
     "test/integration/*"
   ],
